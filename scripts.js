@@ -21,7 +21,7 @@ function alertar(event){
     //if(resultado == 0){
        // alert("este número é par!");
     
-       saida.innerText = "nom: " + telefone.value +
+       saida.innerText = "Nome: " + nome.value +
        "\n telefone " + telefone.value +
        "\n cep " + cep.value +
        "\n logradouro " + logradouro.value +
@@ -29,6 +29,6 @@ function alertar(event){
        "\n complemento " + complemento.value +
        "\n bairro " + bairro.value +
        "\n cidade " + cidade.value +
-       "\n estado " + estado.value +
+       "\n estado " + estado.value ;
 
     }
