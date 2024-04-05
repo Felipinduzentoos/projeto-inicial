@@ -21,22 +21,51 @@ function alertar(event){
     //if(resultado == 0){
        // alert("este número é par!");
       
+      //validação dods dados
+
+    if(cep.value.lenght < 8){
+      alert('entre com um CEP valido!');
+      return;
+    }
+   
+    //formatar os dados
+    cep.value = cep.value.replace('-','');
+
+
        const url = `https://viacep.com.br/ws/${cep.value}/json`;
  
        
-      fetch (url)
-      .then(resposta=>resposta.json())
-      .then(dados=>alert(dados.bairro))    
+      fetch(url).then( function(resposta){
+         return resposta.json();
 
+      })
+      .then(
+         function (dadosDoEndereço){
+            logradouro.value = dadosDoEndereço.logradouro;
+            bairro.value = dadosDoEndereço.bairro;
+            cidade.value = dadosDoEndereço.localidade;
+            estado.value = dadosDoEndereço.uf;
+            complemento.value = dadosDoEndereço.complemento;
 
-       saida.innerText = "Nome: " + nome.value +
-       "\n telefone " + telefone.value +
-       "\n cep " + cep.value +
-       "\n logradouro " + logradouro.value +
-       "\n numero " + numero.value +
-       "\n complemento " + complemento.value +
-       "\n bairro " + bairro.value +
-       "\n cidade " + cidade.value +
-       "\n estado " + estado.value ;
+            saidaDeDados(); // chamada de função
+         }
+      )
+.catch(function(e){
+   alert(e.message())
+});
+     
+    }
+
+    function saidaDeDados(){
+      
+      saida.innerText = "Nome: " + nome.value +
+      "\n telefone " + telefone.value +
+      "\n cep " + cep.value +
+      "\n logradouro " + logradouro.value +
+      "\n numero " + numero.value +
+      "\n complemento " + complemento.value +
+      "\n bairro " + bairro.value +
+      "\n cidade " + cidade.value +
+      "\n estado " + estado.value ;
 
     }
